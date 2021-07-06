@@ -1,0 +1,10 @@
+.main_heading {
+  color: white;
+  float: left;
+  font-family: "Courgette", sans-serif;
+}
+.menu_items{
+  float: right;
+  color: white;
+  margin-right: 13px;
+}

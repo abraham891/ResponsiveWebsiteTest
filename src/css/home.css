@@ -1,0 +1,12 @@
+.table {
+  width: 100%;
+  word-break: break-all;
+}
+.table tr th {
+  text-indent: 5%;
+  padding:6px
+}
+.table tr td {
+  width: 65%;
+  text-align: center;
+}

@@ -1,0 +1,9 @@
+.loginError {
+  font-family: "Courgette", sans-serif;
+  font-size: 13px;
+  background-color: #ffdfd5;
+}
+#usernameError,
+#passwordError {
+  font-size: 12px;
+}
