@@ -4,7 +4,7 @@ export const DownloadItem = (props) => {
   return (
     <div
       className="my-1 m-1 border border-2 rounded-3 d-inline-block"
-      style={{ maxWidth: "300px", width:"94%" }}
+      style={{ maxWidth: "300px", width:"97%" }}
     >
       <div className="ms-1 position-absolute">
         <span className="badge rounded-pill bg-primary">{extension}</span>
