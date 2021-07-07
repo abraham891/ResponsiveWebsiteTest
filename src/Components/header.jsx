@@ -1,8 +1,10 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "../css/header.css";
 
-export const Header = (props) => {
-  const { loginSuccess } = props;
+export const Header = () => {
+  const loginSuccess = useSelector((state) => state.loginStatus.loginSuccess);
+
   if (loginSuccess) {
     return (
       <div className="bg-primary">
@@ -16,6 +18,9 @@ export const Header = (props) => {
             </Link>
             <Link to="/search">
               <li className="menu_items">Search</li>
+            </Link>
+            <Link to="/downloads">
+              <li className="menu_items">Downloads</li>
             </Link>
           </ul>
         </nav>

@@ -1,20 +1,21 @@
+import { useSelector } from "react-redux";
 import "./styles.css";
-import { Header, Register, Login, Home, Search } from "./Components";
+import { Header, Register, Login, Home, Search,Downloads } from "./Components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
 
 export default function App() {
-  const [loginSuccess, setLoginSuccess] = useState(false);
-  const onLoginStatusChange = (booleanValue) => setLoginSuccess(booleanValue);
+  const loginSuccess = useSelector((state) => state.loginStatus.loginSuccess);
+
   if (loginSuccess) {
     return (
       <Router>
         <div className="App">
-          <Header loginSuccess={loginSuccess} />
+          <Header />
           <Switch>
             <Route exact path="/home" component={Home} />
             <Route path="/search" component={Search} />
+            <Route path="/downloads" component={Downloads} />
           </Switch>
         </div>
       </Router>
@@ -23,13 +24,13 @@ export default function App() {
     return (
       <Router>
         <div className="App">
-          <Header loginSuccess={loginSuccess} />
+          <Header />
           <Switch>
             <Route exact path="/">
               <Register />
             </Route>
             <Route path="/login">
-              <Login loginStatusChange={onLoginStatusChange} />
+              <Login />
             </Route>
           </Switch>
         </div>

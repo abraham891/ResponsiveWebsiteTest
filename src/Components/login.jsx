@@ -4,25 +4,31 @@ import {
   loginFailError,
   removeErrorMessage
 } from "./loginUtilities";
+import { loginStatus } from "../Redux/actions";
 import "../css/login.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-export const Login = (props) => {
-  const { username, password } = useSelector((userData) => userData);
+export const Login = () => {
+  const { username, password } = useSelector(
+    (state) => state.register.userDetails
+  );
   const history = useHistory();
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
       if (isValidUser(username, password)) {
+        dispatch(loginStatus(true));
         history.push("/home");
-        props.loginStatusChange(true);
       } else {
         loginFailError();
         e.target.reset();
       }
     }
   };
+
   return (
     <div className="container">
       <h1 className="m-3 text-center">Login Page</h1>

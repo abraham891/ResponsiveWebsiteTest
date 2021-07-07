@@ -2,8 +2,9 @@ import { useSelector } from "react-redux";
 import "../css/home.css";
 
 export const Home = () => {
-  const userData = useSelector((data) => data);
+  const userData = useSelector((state) => state.register.userDetails);
   const { name, username, email, phone } = userData;
+
   return (
     <>
       <div className="container mt-5 text-center">

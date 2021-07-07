@@ -1,15 +1,27 @@
-import {REGISTER_USER} from './actions';
+import { REGISTER_USER, LOGIN_SUCCESS } from "./actions";
 
-const initialuserData = {
-  userDetails:{}
+const initialRegisterState = {
+  userDetails: {}
 };
 
-export const registerReducer = (userData = initialuserData, action) => {
+export const registerReducer = (state = initialRegisterState, action) => {
   switch (action.type) {
     case REGISTER_USER:
-      const data = { ...userData, userDetails : action.payload };
-      return data.userDetails;
+      return { ...state, userDetails: action.payload };
     default:
-      return userData.userDetails;
+      return state;
+  }
+};
+
+const initialLoginStatusState = {
+  loginSuccess: false
+};
+
+export const loginStatusReducer = (state = initialLoginStatusState, action) => {
+  switch (action.type) {
+    case LOGIN_SUCCESS:
+      return { ...state, loginSuccess: action.payload };
+    default:
+      return state;
   }
 };

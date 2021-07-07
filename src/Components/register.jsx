@@ -49,7 +49,7 @@ export const Register = () => {
               onChange={(e) =>
                 setUserData({ ...userData, name: e.target.value })
               }
-              onBeforeInput={removeErrorMessage}
+              onFocus={removeErrorMessage}
             />
             <span className="error text-danger" id="nameError"></span>
           </div>
@@ -65,7 +65,7 @@ export const Register = () => {
               onChange={(e) =>
                 setUserData({ ...userData, username: e.target.value })
               }
-              onBeforeInput={removeErrorMessage}
+              onFocus={removeErrorMessage}
             />
             <span className="error text-danger" id="usernameError"></span>
           </div>
@@ -81,7 +81,7 @@ export const Register = () => {
               onChange={(e) =>
                 setUserData({ ...userData, password: e.target.value })
               }
-              onBeforeInput={removeErrorMessage}
+              onFocus={removeErrorMessage}
             />
             <span className="error text-danger" id="passwordError"></span>
           </div>
@@ -97,7 +97,7 @@ export const Register = () => {
               onChange={(e) =>
                 setUserData({ ...userData, email: e.target.value })
               }
-              onBeforeInput={removeErrorMessage}
+              onFocus={removeErrorMessage}
             />
             <span className="error text-danger" id="emailError"></span>
           </div>
@@ -113,7 +113,7 @@ export const Register = () => {
               onChange={(e) =>
                 setUserData({ ...userData, phone: e.target.value })
               }
-              onBeforeInput={removeErrorMessage}
+              onFocus={removeErrorMessage}
             />
             <span className="error text-danger" id="phoneError"></span>
           </div>
