@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 export const NewsResult = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [items, setItems] = useState([]);
-  const [error, setError] = useState(null);
   const { keyword } = props;
   useEffect(() => {
     (async () => {

@@ -3,7 +3,6 @@ import { NewsResult } from "./news_result";
 
 export const News = () => {
   const [keyword, setKeyword] = useState("popular");
-
   const handleSearch = (e) => {
     const searchKeyword = document.getElementById("searchBar").value;
     setKeyword(searchKeyword);
