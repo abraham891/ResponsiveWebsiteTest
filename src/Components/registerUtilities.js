@@ -26,6 +26,11 @@ export const validateForm = (userData) => {
     printError("nameError", "name can't be empty");
     isValidForm = false;
   }
+  regex = /^[a-zA-Z][a-zA-Z0-9]+$/;
+  if (!regex.test(username)) {
+    printError("usernameError", "Invalid username");
+    isValidForm = false;
+  }
   if (username === "") {
     printError("usernameError", "username can't be empty");
     isValidForm = false;
@@ -33,6 +38,11 @@ export const validateForm = (userData) => {
   if (password === "") {
     printError("passwordError", "password can't be empty");
     isValidForm = false;
+  } else {
+    if (!successfulPswd(password)) {
+      printError("passwordError", "Invalid Password");
+      isValidForm = false;
+    }
   }
   if (dob === "") {
     printError("dobError", "Date of birth can't be empty");
@@ -55,7 +65,7 @@ export const validateForm = (userData) => {
     printError("phoneError", "phone number can't be empty");
     isValidForm = false;
   } else {
-    regex = /^\d{10}$/;
+    regex = /^[6789]\d{9}$/;
     if (!regex.test(phone)) {
       printError("phoneError", "Invalid number");
       isValidForm = false;
@@ -80,4 +90,52 @@ export const RegisterSuccess = () => {
 export const removeErrorMessage = (e) => {
   const divClassName = e.target.getAttribute("name") + "-div";
   document.querySelector("." + divClassName + " .error").innerHTML = "";
+};
+
+export const psdOnFocus = (e) => {
+  removeErrorMessage(e);
+  document.querySelector(".pswdValidateContainer").classList.remove("d-none");
+};
+
+export const successfulPswd = (pswdText) => {
+  let isPasswordRight = true;
+  let regex = /.*[A-Z].*/;
+  if (regex.test(pswdText)) {
+    document.querySelector("#pswdUpperCase").classList.add("text-success");
+  } else {
+    document.querySelector("#pswdUpperCase").classList.remove("text-success");
+    isPasswordRight = false;
+  }
+  regex = /.*[a-z].*/;
+  if (regex.test(pswdText)) {
+    document.querySelector("#pswdLowerCase").classList.add("text-success");
+  } else {
+    document.querySelector("#pswdLowerCase").classList.remove("text-success");
+    isPasswordRight = false;
+  }
+  regex = /.*[0-9].*/;
+  if (regex.test(pswdText)) {
+    document.querySelector("#pswdNumber").classList.add("text-success");
+  } else {
+    document.querySelector("#pswdNumber").classList.remove("text-success");
+    isPasswordRight = false;
+  }
+  regex = /.*[!@#$%^&*()_+].*/;
+  if (regex.test(pswdText)) {
+    document.querySelector("#pswdSpecialChar").classList.add("text-success");
+  } else {
+    document.querySelector("#pswdSpecialChar").classList.remove("text-success");
+    isPasswordRight = false;
+  }
+  if (pswdText.length >= 8) {
+    document.querySelector("#pswdMinChar").classList.add("text-success");
+  } else {
+    document.querySelector("#pswdMinChar").classList.remove("text-success");
+    isPasswordRight = false;
+  }
+  return isPasswordRight;
+};
+
+export const pswOnBlur = () => {
+  document.querySelector(".pswdValidateContainer").classList.add("d-none");
 };

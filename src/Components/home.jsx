@@ -3,7 +3,7 @@ import "../css/home.css";
 
 export const Home = () => {
   const userData = useSelector((state) => state.register.userDetails);
-  const { name, username, email, phone } = userData;
+  const { name, username, dob, email, gender, phone, address } = userData;
 
   return (
     <>
@@ -22,12 +22,24 @@ export const Home = () => {
               <td>{username}</td>
             </tr>
             <tr>
+              <th>Date of Birth</th>
+              <td>{dob}</td>
+            </tr>
+            <tr>
               <th>Email ID</th>
               <td>{email}</td>
             </tr>
             <tr>
+              <th>Gender</th>
+              <td>{gender}</td>
+            </tr>
+            <tr>
               <th>Phone</th>
               <td>{phone}</td>
+            </tr>
+            <tr>
+              <th>Address</th>
+              <td>{address}</td>
             </tr>
           </table>
         </div>

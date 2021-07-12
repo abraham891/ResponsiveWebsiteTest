@@ -6,7 +6,10 @@ import { registerUser } from "../Redux/actions";
 import {
   validateForm,
   RegisterSuccess,
-  removeErrorMessage
+  removeErrorMessage,
+  psdOnFocus,
+  successfulPswd,
+  pswOnBlur
 } from "./registerUtilities";
 
 export const Register = () => {
@@ -32,6 +35,12 @@ export const Register = () => {
       RegisterSuccess();
       e.target.reset();
     }
+  };
+
+  const handlePsdChange = (e) => {
+    const pswdText = e.target.value;
+    successfulPswd(pswdText);
+    setUserData({ ...userData, password: e.target.value });
   };
 
   const handleGender = (e) => {
@@ -88,13 +97,34 @@ export const Register = () => {
               className="form-control"
               name="password"
               id="password"
+              autoComplete="false"
               placeholder="Enter password"
-              onChange={(e) =>
-                setUserData({ ...userData, password: e.target.value })
-              }
-              onFocus={removeErrorMessage}
+              onChange={handlePsdChange}
+              onFocus={psdOnFocus}
+              onBlur={pswOnBlur}
             />
             <span className="error text-danger" id="passwordError"></span>
+            <div className="pswdValidateContainer d-none text-danger">
+              <span id="pswdUpperCase" className="pswdFactor">
+                Atleast 1 UpperCase
+              </span>
+              <br />
+              <span id="pswdLowerCase" className="pswdFactor">
+                Atleast 1 LowerCase
+              </span>
+              <br />
+              <span id="pswdNumber" className="pswdFactor">
+                Atleast 1 Number
+              </span>
+              <br />
+              <span id="pswdSpecialChar" className="pswdFactor">
+                Atleast 1 Special character
+              </span>
+              <br />
+              <span id="pswdMinChar" className="pswdFactor">
+                Minimum 8 characters
+              </span>
+            </div>
           </div>
           <div className="dob-div m-2">
             <label>Date of Birth</label>

@@ -5,3 +5,4 @@ export * from "./home";
 export * from "./search";
 export * from "./downloads";
 export * from "./news";
+export * from "./news_result";
