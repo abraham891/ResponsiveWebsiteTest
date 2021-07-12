@@ -14,20 +14,31 @@ export const Register = () => {
     name: "",
     username: "",
     password: "",
+    dob: "",
     email: "",
-    phone: ""
+    gender: "",
+    phone: "",
+    address: "",
+    country: "",
+    hobbies: ""
   });
 
   const dispatch = useDispatch();
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateForm()) {
+    if (validateForm(userData)) {
       dispatch(registerUser(userData));
       RegisterSuccess();
       e.target.reset();
     }
   };
+
+  const handleGender = (e) => {
+    setUserData({ ...userData, gender: e.target.value });
+    removeErrorMessage(e);
+  };
+
   return (
     <div className="container">
       <h1 className="m-3 text-center">Register Page</h1>
@@ -85,11 +96,27 @@ export const Register = () => {
             />
             <span className="error text-danger" id="passwordError"></span>
           </div>
+          <div className="dob-div m-2">
+            <label>Date of Birth</label>
+            <br />
+            <input
+              type="date"
+              className="form-control"
+              name="dob"
+              id="dob"
+              placeholder="Enter dob"
+              onChange={(e) =>
+                setUserData({ ...userData, dob: e.target.value })
+              }
+              onFocus={removeErrorMessage}
+            />
+            <span className="error text-danger" id="dobError"></span>
+          </div>
           <div className="email-div m-2">
             <label>email</label>
             <br />
             <input
-              type="email"
+              type="text"
               className="form-control"
               name="email"
               id="email"
@@ -101,8 +128,37 @@ export const Register = () => {
             />
             <span className="error text-danger" id="emailError"></span>
           </div>
+          <div className="gender-div m-2">
+            <label>Gender</label>
+            <br />
+            <input
+              className="form-check-input"
+              id="genderMale"
+              type="radio"
+              value="Male"
+              name="gender"
+              onClick={handleGender}
+            />
+            <label htmlFor="genderMale" className="ms-1">
+              Male
+            </label>
+            &nbsp; &nbsp; &nbsp;
+            <input
+              className="form-check-input"
+              id="genderFemale"
+              type="radio"
+              value="Female"
+              name="gender"
+              onClick={handleGender}
+            />
+            <label htmlFor="genderFemale" className="ms-1">
+              Female
+            </label>
+            <br />
+            <span className="error text-danger" id="genderError"></span>
+          </div>
           <div className="phone-div m-2">
-            <label>Phone Number</label>
+            <label>Phone Number(10 digits)</label>
             <br />
             <input
               type="text"
@@ -117,6 +173,23 @@ export const Register = () => {
             />
             <span className="error text-danger" id="phoneError"></span>
           </div>
+          <div className="address-div m-2">
+            <label>Address</label>
+            <br />
+            <textarea
+              rows="4"
+              className="form-control"
+              name="address"
+              id="address"
+              placeholder="Enter address"
+              onChange={(e) =>
+                setUserData({ ...userData, address: e.target.value })
+              }
+              onFocus={removeErrorMessage}
+            />
+            <span className="error text-danger" id="addressError"></span>
+          </div>
+
           <div className="text-center">
             <button type="submit" className="btn btn-primary">
               Register

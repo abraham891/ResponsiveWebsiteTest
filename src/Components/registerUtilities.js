@@ -1,32 +1,72 @@
-export const validateForm = () => {
+function printError(id, msg) {
+  document.getElementById(id).innerHTML = msg;
+}
+
+export const validateForm = (userData) => {
+  let regex = null;
+  const {
+    name,
+    username,
+    password,
+    dob,
+    email,
+    gender,
+    phone,
+    address,
+    country,
+    hobbies
+  } = userData;
   let isValidForm = true;
-  if (document.getElementById("name").value === "") {
-    document.getElementById("nameError").innerHTML =
-      "name can't be empty";
+  regex = /^[a-zA-Z\s]+$/;
+  if (regex.test(name) === false) {
+    printError("nameError", "Invalid name");
     isValidForm = false;
   }
-  if (document.getElementById("username").value === "") {
-    document.getElementById("usernameError").innerHTML =
-      "username can't be empty";
+  if (name === "") {
+    printError("nameError", "name can't be empty");
     isValidForm = false;
   }
-  if (document.getElementById("password").value === "") {
-    document.getElementById("passwordError").innerHTML =
-      "password can't be empty";
+  if (username === "") {
+    printError("usernameError", "username can't be empty");
     isValidForm = false;
   }
-  if (document.getElementById("email").value === "") {
-    document.getElementById("emailError").innerHTML =
-      "email can't be empty";
+  if (password === "") {
+    printError("passwordError", "password can't be empty");
     isValidForm = false;
   }
-  if (document.getElementById("phone").value === "") {
-    document.getElementById("phoneError").innerHTML =
-      "phone can't be empty";
+  if (dob === "") {
+    printError("dobError", "Date of birth can't be empty");
+    isValidForm = false;
+  }
+  regex = /^\S+@\S+$/;
+  if (!regex.test(email)) {
+    printError("emailError", "Invalid email");
+    isValidForm = false;
+  }
+  if (email === "") {
+    printError("emailError", "email can't be empty");
+    isValidForm = false;
+  }
+  if (gender === "") {
+    printError("genderError", "please select gender");
+    isValidForm = false;
+  }
+  if (phone === "") {
+    printError("phoneError", "phone number can't be empty");
+    isValidForm = false;
+  } else {
+    regex = /^\d{10}$/;
+    if (!regex.test(phone)) {
+      printError("phoneError", "Invalid number");
+      isValidForm = false;
+    }
+  }
+  if (address === "") {
+    printError("addressError", "address can't be empty");
     isValidForm = false;
   }
   return isValidForm;
-}
+};
 
 export const RegisterSuccess = () => {
   let registerElement = document.querySelector(".registerStatus");
@@ -38,6 +78,6 @@ export const RegisterSuccess = () => {
 };
 
 export const removeErrorMessage = (e) => {
-  const divClassName = e.target.getAttribute("id") + "-div";
+  const divClassName = e.target.getAttribute("name") + "-div";
   document.querySelector("." + divClassName + " .error").innerHTML = "";
 };

@@ -1,6 +1,14 @@
 import { useSelector } from "react-redux";
 import "./styles.css";
-import { Header, Register, Login, Home, Search,Downloads } from "./Components";
+import {
+  Header,
+  Register,
+  Login,
+  Home,
+  Search,
+  Downloads,
+  News
+} from "./Components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -16,6 +24,7 @@ export default function App() {
             <Route exact path="/home" component={Home} />
             <Route path="/search" component={Search} />
             <Route path="/downloads" component={Downloads} />
+            <Route path="/news" component={News} />
           </Switch>
         </div>
       </Router>

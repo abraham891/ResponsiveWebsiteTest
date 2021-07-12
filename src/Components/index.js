@@ -4,3 +4,4 @@ export * from "./login";
 export * from "./home";
 export * from "./search";
 export * from "./downloads";
+export * from "./news";

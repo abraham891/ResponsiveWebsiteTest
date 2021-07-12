@@ -22,6 +22,9 @@ export const Header = () => {
             <Link to="/downloads">
               <li className="menu_items">Downloads</li>
             </Link>
+            <Link to="/news">
+              <li className="menu_items">News</li>
+            </Link>
           </ul>
         </nav>
       </div>
