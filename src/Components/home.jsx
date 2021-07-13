@@ -1,9 +1,17 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { loginStatus } from "../Redux/actions";
 import "../css/home.css";
+import { useHistory } from "react-router-dom";
 
 export const Home = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const userData = useSelector((state) => state.register.userDetails);
   const { name, username, dob, email, gender, phone, address } = userData;
+  const handleLogOut = () => {
+    dispatch(loginStatus(false));
+    history.push("/login");
+  };
 
   return (
     <>
@@ -43,7 +51,9 @@ export const Home = () => {
             </tr>
           </table>
         </div>
-        <button className="mt-5 btn btn-success">Logout</button>
+        <button className="mt-5 btn btn-success" onClick={handleLogOut}>
+          Logout
+        </button>
       </div>
     </>
   );

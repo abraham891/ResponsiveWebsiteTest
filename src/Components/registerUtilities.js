@@ -80,11 +80,19 @@ export const validateForm = (userData) => {
 
 export const RegisterSuccess = () => {
   let registerElement = document.querySelector(".registerStatus");
-  registerElement.innerHTML = "Registration Success! Go to login page!";
   registerElement.classList.remove("d-none");
-  setTimeout(function () {
-    registerElement.classList.add("d-none");
-  }, 15000);
+  let count = 5;
+  var countInterval = setInterval(function () {
+    registerElement.innerHTML =
+      "Registration Success! You will be redirected to login page in " +
+      count +
+      " seconds";
+    count -= 1;
+    if (count < 0) {
+      clearInterval(countInterval);
+    }
+  }, 1000);
+  registerElement.classList.remove("d-none");
 };
 
 export const removeErrorMessage = (e) => {

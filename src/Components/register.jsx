@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import "../css/register.css";
 import { registerUser } from "../Redux/actions";
 
@@ -26,6 +27,7 @@ export const Register = () => {
     hobbies: ""
   });
 
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -34,6 +36,9 @@ export const Register = () => {
       dispatch(registerUser(userData));
       RegisterSuccess();
       e.target.reset();
+      setTimeout(function () {
+        history.push("/login");
+      }, 6000);
     }
   };
 
@@ -55,10 +60,13 @@ export const Register = () => {
         className="bg-light w-0 border border-2 p-2 m-auto"
         style={{ maxWidth: "400px", borderRadius: "25px" }}
       >
-        <form onSubmit={handleSubmit}>
-          <div className="registerStatus m-2 p-1 d-none text-center rounded-3"></div>
+        <form name="form" onSubmit={handleSubmit}>
+          <div
+            data-testid="registerStatus"
+            className="registerStatus m-2 p-1 d-none text-center rounded-3"
+          ></div>
           <div className="name-div m-2">
-            <label>Name</label>
+            <label htmlFor="name">Name</label>
             <br />
             <input
               type="text"
@@ -74,7 +82,7 @@ export const Register = () => {
             <span className="error text-danger" id="nameError"></span>
           </div>
           <div className="username-div m-2">
-            <label>Username</label>
+            <label htmlFor="username">Username</label>
             <br />
             <input
               type="text"
@@ -90,7 +98,7 @@ export const Register = () => {
             <span className="error text-danger" id="usernameError"></span>
           </div>
           <div className="password-div m-2">
-            <label>Password</label>
+            <label htmlFor="password">Password</label>
             <br />
             <input
               type="password"
@@ -127,7 +135,7 @@ export const Register = () => {
             </div>
           </div>
           <div className="dob-div m-2">
-            <label>Date of Birth</label>
+            <label htmlFor="dob">Date of Birth</label>
             <br />
             <input
               type="date"
@@ -143,7 +151,7 @@ export const Register = () => {
             <span className="error text-danger" id="dobError"></span>
           </div>
           <div className="email-div m-2">
-            <label>email</label>
+            <label htmlFor="email">email</label>
             <br />
             <input
               type="text"
@@ -159,7 +167,7 @@ export const Register = () => {
             <span className="error text-danger" id="emailError"></span>
           </div>
           <div className="gender-div m-2">
-            <label>Gender</label>
+            <label htmlFor="genderMale">Gender</label>
             <br />
             <input
               className="form-check-input"
@@ -188,7 +196,7 @@ export const Register = () => {
             <span className="error text-danger" id="genderError"></span>
           </div>
           <div className="phone-div m-2">
-            <label>Phone Number(10 digits)</label>
+            <label htmlFor="phone">Phone Number(10 digits)</label>
             <br />
             <input
               type="text"
@@ -204,7 +212,7 @@ export const Register = () => {
             <span className="error text-danger" id="phoneError"></span>
           </div>
           <div className="address-div m-2">
-            <label>Address</label>
+            <label htmlFor="address">Address</label>
             <br />
             <textarea
               rows="4"

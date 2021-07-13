@@ -1,0 +1,6 @@
+.sortDiv {
+  cursor:pointer;
+}
+.active {
+  color:blue;
+}
